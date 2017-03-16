@@ -18,7 +18,7 @@
 String KEYBOARD_NAME = "myKeyboardName";
 
 const String keyMap[64] = {"0", "this is an automated message ", "goodbye ", "call you later ", "see you later ", 
-":-) ", "add some text", "some more text", "etc", "more"
+":-) ", "add some text", "some more text", "etc", "more", "and still more"
                           };
 
 // pin settings
