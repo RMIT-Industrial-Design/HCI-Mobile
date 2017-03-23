@@ -63,25 +63,28 @@ void setup(void)
 //
 // Loop the program - run forever
 //
-void loop(void)
-{ // button states are represented by 0s and 1s in a binary number
+void loop(void) { // button states are represented by 0s and 1s in a binary number
   byte buttonState = readButtonState();
   byte h = 0; // the 'highest' key press
-  
+
   // only runs when there are keys being pressed
   while (buttonState != 0)
   { if (buttonState > h)
-    { h = buttonState; } // write the button state as the highest option
+    {
+      h = buttonState;  // write the button state as the highest option
+    }
     buttonState = readButtonState();
   }
 
   // sends h if it is not 0
   if (h != 0)
-  { sendChar(h);  }
+  {
+    sendChar(h);
+  }
 }
 
 
-byte readButtonState() 
+byte readButtonState()
 { // start with them all off. Note B00000 not B000000 because 5 not 6 buttons
   byte bState = B00000;
 
@@ -95,7 +98,7 @@ byte readButtonState()
   return (bState);
 }
 
-void sendChar(byte buttonState) 
+void sendChar(byte buttonState)
 { Serial.print("Sending Byte: ");
   Serial.print(buttonState, BIN);
   Serial.print(" Number: ");
@@ -110,7 +113,7 @@ void sendChar(byte buttonState)
   if ( ble.waitForOK() )
   {
     Serial.println("OK!");
-  } 
+  }
   else
   {
     Serial.println("FAILED!");
