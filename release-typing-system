@@ -4,10 +4,12 @@
   Basic Chorded Keyboard
   with chord delay and auto repeat
 
-  by Scott Mitchell
+  by Laura Maisy
   RMIT University
 
-  based on Adafruit Bluefruit code.
+  based on code by:
+  Scott Mitchell, RMIT University
+  Adafruit Bluefruit
   MIT license
 
   This code is designed for use with the Adafruit Bluefruit Feather board
