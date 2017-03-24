@@ -40,11 +40,11 @@ long timeOfLastKeyPress = 0;
 // the milliseconds before timeout triggers char print
 const int buttonTimeout = 500;
 // the button being counted
-int count_button = 0;
+int count_button = 1;
 // the number of times the button has been pressed
 int count_button_presses = 0;
 // the last button that was pressed. 0 = no button
-int current_button = 0;
+int last_button = 0;
 
 //
 // Setup the system - run once
@@ -77,18 +77,18 @@ void loop(void) {
   int new_button = readButtonState();
 
   // check for a change in button state
-  if (new_button != current_button) {
+  if (new_button != last_button) {
     if (new_button == 0) {
       // register the last button press as valid
       count_button_presses++;
+      Serial.print("Char: ");
+      Serial.println(keyMap[count_button - 1][count_button_presses - 1]);
     } else {
       if (new_button != count_button) {
-        if (current_button != 0) {
-          // register the last button press as valid
-          count_button_presses++;
+        if (count_button != 0) {
+          // trigger a char from the last button press
+          sendStr(count_button, count_button_presses);
         }
-        // trigger a char from the last button press
-        sendStr(count_button, count_button_presses);
         // remember the new count button
         count_button = new_button;
         // reset the button count
@@ -98,13 +98,13 @@ void loop(void) {
     // remember the time of the button press
     timeOfLastKeyPress = millis();
     // remember the new button for next time
-    current_button = new_button;
+    last_button = new_button;
     // wait for button bounce
     delay(keyPressDelay);
   }
 
+  // check for timeout
   if (count_button != 0) {
-    // check for timeout
     if (millis() - timeOfLastKeyPress > buttonTimeout) {
       // send String
       sendStr(count_button, count_button_presses);
