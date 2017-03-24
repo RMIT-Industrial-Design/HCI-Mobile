@@ -17,7 +17,7 @@
 *********************************************************************/
 
 #include "keyboardSetup.h"
-String KEYBOARD_NAME = "Laura_Keyboard";
+String KEYBOARD_NAME = "myKeyboardName";
 
 // characters. Note that [32] is updated because there are 5 buttons, also '0x08' is hex for backspace
 const char keyMap[32] = {'0', 'j', ' ', 'u', 'k', 'd', 'i', 'e', 'l', 'f',
