@@ -47,7 +47,7 @@ const int autoRepeatTime = 2000;
 //
 void setup(void)
 {
-  while (!Serial);  // wait for Serial to startup - maybe don't need this?
+  // while (!Serial);  // wait for Serial to startup - maybe don't need this?
   delay(500);
 
   Serial.begin(115200);
